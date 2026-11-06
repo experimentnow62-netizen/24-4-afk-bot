@@ -1,0 +1,24 @@
+import time
+from bedrock.protocol.connection import Connection
+
+# --- TERA SERVER CONFIG ---
+SERVER_IP = "YOUR_BEDROCK_IP.aternos.me"  # Yahan apna IP daal
+SERVER_PORT = 19132                       # Yahan apna Port daal (Bedrock default: 19132)
+BOT_NAME = "AFK_Bot_247"
+
+print(f"Connecting bot to {SERVER_IP}:{SERVER_PORT}...")
+
+# Bedrock Connection setup
+try:
+    conn = Connection(SERVER_IP, SERVER_PORT, username=BOT_NAME)
+    conn.connect()
+    print(f"Success! {BOT_NAME} is now inside the server.")
+
+    # 24/7 Anti-AFK Keep-Alive Loop
+    while True:
+        # Har 30 sec mein packet bhejega taaki Aternos kick na kare
+        time.sleep(30)
+        print("Sending Anti-AFK keep-alive packet...")
+
+except Exception as e:
+    print(f"Connection error: {e}")
